@@ -1,11 +1,19 @@
  function showPic(whichpic) {   //目的是直接在html中显示image，而不需要弹出新窗口
+     if (!document.getElementById("placeholder")) return false;   //检查id为placeholder的元素是否存在
             var source = whichpic.getAttribute("href");                    //调用<a>的图片路径属性href的内容
             var placeholder = document.getElementById("placeholder");     //调用占位图元素<img>。注意：查找img元素而非img的src属性。因为修改属性的前提是调用元素。只能通过元素修改属性，不能直接属性交换。
+            if (placeholder.nodeName != "IMG") return false;        //检查img是否存在
             placeholder.setAttribute("src",source);                       //将占位图的图片路径src的内容，替换成a的href的内容
-            var title_text = whichpic.getAttribute("title");                 //调用<a>的title的内容
+
+            if (document.getElementById("description")) {               //检查id为description的元素是否存在
+            var title_text = whichpic.getAttribute("title") ? whichpic.getAttribute("title") : "";         //调用<a>的title的内容 添加到末尾的p中 
             var description = document.getElementById("description");      //查找和调用id为description的元素p
+            if (description.firstChild.nodeType == 3) {
             description.firstChild.nodeValue = title_text;               //将title的内容赋值到id为description的第一个子节点，也就是p的文本节点中。
        }
+     }
+       return true;     //如果不存在那就忽略这个js采取默认的格式，而不是错误；
+     }
 
        //1.js实现：不转入新窗口的图片墙和根据图片而变化的文字，一个html实现多个html的变化
 
@@ -34,8 +42,8 @@
  
            for (var i=0; i < links.length; i++) {       //历遍所有的<a>
                 links[i].onclick = function() {          //在所有的a中设置onclick事件处理函数
-                     showPic(this);     //把事件处理函数onclick与图片路径联系起来
-                     return false;
+                          
+                     return showPic(this) ? false : true;    //把事件处理函数onclick与图片路径联系起来 
                 }
            }
       }

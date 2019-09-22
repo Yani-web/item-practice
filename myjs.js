@@ -4,6 +4,8 @@
 //3. displayAbbreviations 缩略词一览表
 //4. stripeTable  表格奇偶行样式
 //5. styleElementSiblings
+//6. moveElement
+
 
 
 
@@ -109,3 +111,32 @@ function styleElementSiblings(tag,theclass) {
 addLoadEvent(function() {
     styleElementSiblings("h1","intro");   //eg class=“intro”插入到h1中 以便修改h1的格式
 })
+
+// 6. moveElement
+function moveElement(elementID, final_x, final_y, interval) {  //final_x, final_y为元素的left和top的最终px
+    if (!document.getElementById) return false;
+    if (!document.getElementById(elementID)) return false;
+    var elem = document.getElementById(elementID);
+    var xpos = parseInt(elem.style.left); //把top和left的具体数值提取出来
+    var ypos = parseInt(elem.style.top);
+    if (xpos == final_x && ypos == final_y) {      //当top和left的px到了实际位置 那么停止；如果没到就++
+        return true; 
+      }
+    if (xpos < final_x) {
+        xpos++;
+    }
+    if (xpos > final_x) {
+        xpos--;
+    }
+    if (ypos < final_y) {
+        ypos++;
+    }
+    if (ypos > final_y) {
+        ypos--;
+    }
+    elem.style.left = xpos + "px";
+    elem.style.top = ypos + "px";
+    var repeat = "moveElement('"+elementID+"', "+final_x+", "+final_y+", "+interval+")";
+    movement = setTimeout(repeat, interval);
+}
+addLoadEvent(moveElement);

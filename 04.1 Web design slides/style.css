@@ -1,0 +1,14 @@
+body {
+    padding-left: 20px;
+}
+#slideshow {
+    width: 600px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 5PX GREY;
+}
+a {
+    text-decoration: none;
+    color: rgb(56, 56, 56);
+}

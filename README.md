@@ -9,4 +9,7 @@
 <p>Key point: abbreviation lists, reference links</p>
 <h1>4. Animation</h1>
 <img src="04. Animation/demo.png" width="800px">
-<p>Key point: Movement of two elements, reference links，animation effects are a gradual process.</p>
+<p>Key point: Movement of two elements, reference links, animation effects are a gradual process.</p>
+<h1>4.1 Animation</h1>
+<img src="04.1 Web design slides/demo.png" width="800px">
+<p>Key point: overflow(css), position the four images separately（moveElement）, onmousover, clearTimeout.</p>
